@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle">
-    <corners android:radius="10000dp" />
-    <solid
-        android:color="#03A9F4" />
+<!--Code from stackoverflow on how to create a circle.
+https://stackoverflow.com/questions/3185103/how-to-define-a-circle-shape-in-an-android-xml-drawable-file -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid android:color="#199fff"/>
+    <stroke
+        android:width="2dp"
+        android:color="#444444"/>
 </shape>
+
