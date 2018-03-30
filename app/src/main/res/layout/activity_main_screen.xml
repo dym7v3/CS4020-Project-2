@@ -70,28 +70,20 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="155dp"
+        android:layout_height="250dp"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.65999997">
+        app:layout_constraintVertical_bias="1.0">
 
         <ListView
             android:id="@+id/listView"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="test test text"
-            android:textSize="25dp"
-            android:textStyle="bold" />
-
     </LinearLayout>
 
 
