@@ -1,14 +1,12 @@
 package com.example.dennismoyseyev.stopwatch
 
 import android.os.SystemClock
-import kotlinx.android.synthetic.main.activity_main_screen.*
-import java.sql.Time
 import java.util.*
 
 
 class data_model()
 {
-   private var time : time_class= time_class()
+   var time : time_class= time_class()
    var start_time : Long = 0
    var v: Vector<time_class> = Vector()
    private var new_total_milliseconds_plus_additional_time: Long=0
