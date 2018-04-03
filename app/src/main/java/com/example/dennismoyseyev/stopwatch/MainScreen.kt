@@ -1,13 +1,8 @@
 package com.example.dennismoyseyev.stopwatch
 
 import android.os.Bundle
-import android.os.Handler
 import android.os.SystemClock
 import android.support.v4.app.FragmentActivity
-import android.widget.TextView
-import android.view.View
-import android.view.ViewGroup
-import android.widget.BaseAdapter
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main_screen.*
 import kotlinx.android.synthetic.main.list_frag.*
@@ -26,22 +21,29 @@ class MainScreen : FragmentActivity() {
         setContentView(R.layout.activity_main_screen)
         bind_button()
         list_frag_listview.adapter= laps_adapter
+        stop_but.isClickable=false
     }
 
 
     //Binds the buttons so that they can actually be used by the user.
     private fun bind_button(){
         start_but.setOnClickListener {
-            model.start_time=SystemClock.uptimeMillis()
+            model.start_time = SystemClock.elapsedRealtime()-model.save_time
+            stop_but.isClickable =true
+            start_but.isClickable = false
             model.mHandler.postDelayed(update_timer, 0)
+            start_but.text = getString(R.string.start)
         }
 
         //Displays that the stop button was pressed and it will then change the stop to say resume
         //and when pressed it will continue from where it was paused.
         stop_but.setOnClickListener {
-            Toast.makeText(this, "The Stopwatch was stopped.", Toast.LENGTH_SHORT).show()
-            //TODO add the ability to be able to save the time so that you can resume the stopwatch.
-            model.mHandler.removeCallbacks(update_timer)
+                model.is_Stopped=true
+                start_but.text = getString(R.string.resume)
+                stop_but.isClickable=false
+                start_but.isClickable=true
+                model.save_time= SystemClock.elapsedRealtime()- model.start_time
+                model.mHandler.removeCallbacks(update_timer)
         }
 
         //Displays the Toast that the reset button was pressed and resets the time back to zero.
@@ -51,6 +53,9 @@ class MainScreen : FragmentActivity() {
             model.reset_time()
             Timer.text =model.show_time()
             laps_adapter.notifyDataSetChanged() //Tells us adapter that the data set changed.
+            start_but.isClickable=true
+            stop_but.text = getText(R.string.stop)
+            start_but.text = getString(R.string.start)
         }
 
         //When the lap button is pressed records the string representation of the time and adds
