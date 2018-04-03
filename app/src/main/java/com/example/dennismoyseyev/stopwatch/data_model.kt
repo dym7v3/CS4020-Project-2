@@ -2,20 +2,17 @@ package com.example.dennismoyseyev.stopwatch
 
 import android.os.SystemClock
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class data_model()
 {
    var time : time_class= time_class()
+   var laps: ArrayList<String> = ArrayList()
    var start_time : Long = 0
-   var v: Vector<time_class> = Vector()
    private var new_total_milliseconds_plus_additional_time: Long=0
    var total_milliseconds: Long =0
 
-
-    init{
-      v.add(time)
-   }
 
     internal fun running_time()
     {
