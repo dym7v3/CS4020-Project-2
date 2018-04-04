@@ -21,12 +21,8 @@ class data_model()
    private var total_milliseconds: Long =0
    var is_Stopped: Boolean=false
    var save_time: Long = 0
+   var time_started: Boolean=false
 
-
-    internal fun time_stopped()
-    {
-        save_time=start_time
-    }
 
     //Using the example code from:http://javasampleapproach.com/android/kotlin-listview-example-android
     internal class LapsAdapter (context: Context, private var lapsList: ArrayList<String>) : BaseAdapter() {
@@ -77,7 +73,7 @@ class data_model()
 
     internal fun running_time()
     {
-        time.milliseconds = SystemClock.elapsedRealtime() - start_time
+        time.milliseconds = SystemClock.uptimeMillis() - start_time
         new_total_milliseconds_plus_additional_time = total_milliseconds +  time.milliseconds
         time.seconds =(new_total_milliseconds_plus_additional_time / 1000)
         time.minutes = time.seconds / 60
@@ -96,6 +92,8 @@ class data_model()
         start_time=0
         laps.clear() //Removes all the records of the laps.
         save_time=0
+        time_started=false
+        is_Stopped=false
     }
 
     //returns the time in a string. To be displayed as the text for the timer.
